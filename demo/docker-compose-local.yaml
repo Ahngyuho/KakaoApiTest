@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  kakaoapi-test-proj-redis:
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    image: gyuho0897/kakaoapi-test-proj-redis
+    ports:
+      - "6379:6379"
+  kakaoapi-test-proj-database:
+    container_name: kakaoapi-test-proj-database
+    build:
+      dockerfile: Dockerfile
+      context: ./rdb
+    image: gyuho0897/kakaoapi-test-proj-database
+    environment:
+      - MARIADB_DATABASE=kakaoapi
+      - MARIADB_ROOT_PASSWORD=${SPRING_DATABASE_PASSWORD}
+    ports:
+      - "3306:3306"
