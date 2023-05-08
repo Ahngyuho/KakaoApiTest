@@ -16,5 +16,7 @@ services:
     environment:
       - MARIADB_DATABASE=kakaoapi
       - MARIADB_ROOT_PASSWORD=${SPRING_DATABASE_PASSWORD}
+    volumes:
+      - ./rdb/init:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
